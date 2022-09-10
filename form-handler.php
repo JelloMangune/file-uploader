@@ -13,12 +13,16 @@ if ($result == "error"){
 }
 else{
 	if ($result !== FALSE) {
-
-		// Save the registration info
-		$register = new Registration($_POST['complete_name'], $_POST['email'], $password = $_POST['password'], $result['save_path']);
-		$result = $register->save();
-		header('Location: index.php?success=1');
-
+		try {
+			// Save the registration info
+			$encrpyted_pass = md5($_POST['password']);
+			$register = new Registration($_POST['complete_name'], $_POST['email'], $password = $encrpyted_pass, $result['save_path']);
+			$result = $register->save();
+			header('Location: index.php?success=1');
+		}
+		catch (Exception $e) {
+			error_log($e->getMessage());
+		}
 	} else {
 
 		header('Location: index.php?error=' . $e->getMessage());

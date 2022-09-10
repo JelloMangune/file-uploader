@@ -18,7 +18,7 @@ $error = $_GET['error'] ?? null;
             padding-top:50px;
         }
     </style>
-    <title>Registration Form</title>
+    <title>PDC10 Registrations</title>
 </head>
 <body>
     <?php if (!is_null($success)): ?>
@@ -32,8 +32,15 @@ $error = $_GET['error'] ?? null;
             Unable to upload your file. Please insert an image type file.
         </div>
     <?php endif ?>
-    <div class="header">
-        <h1>Registration Form</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-9"><h1>Registrations</h1></div>
+            <div class="col-3">
+                <form method="POST" action="register.php">
+                    <button class="btn btn-primary" style="margin-top:10px;">Add New Registration</button>
+                </form>
+            </div> 
+        </div>
     </div>
     <div class="container">
     <table class="table table-striped">

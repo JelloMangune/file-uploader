@@ -15,6 +15,27 @@
             padding-right:300px;
         }
     </style>
+    <script>
+        var check = function() {
+        if (document.getElementById('password').value ==
+            document.getElementById('confirmPassword').value) {
+            document.getElementById('message').style.color = 'green';
+            document.getElementById('message').innerHTML = 'matching';
+        } else {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = 'Password does not match';
+        }
+
+        }
+        function check_pass() {
+        if (document.getElementById('password').value ==
+                document.getElementById('confirmPassword').value) {
+            document.getElementById('submit').disabled = false;
+        } else {
+            document.getElementById('submit').disabled = true;
+        }
+        }
+    </script>
     <title>Registration Form</title>
 </head>
 <body>
@@ -38,13 +59,14 @@
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-6">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" onkeyup='check_pass();' onkeyup='check()' required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="confirmPassword" class="col-sm-2 col-form-label">Confirm Password</label>
                 <div class="col-sm-6">
-                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" onkeyup='check_pass();' onkeyup='check()' required>
+                <span id='message'></span>
                 </div>
             </div>
             <div class="form-group row">
@@ -55,7 +77,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-6">
-                <button type="submit" class="btn btn-primary mb-2" style="margin-left:130px;">Submit Registration</button>
+                <button id="submit"  type="submit" class="btn btn-primary mb-2" style="margin-left:130px;" disabled>Submit Registration</button>
                 </div>
             </div>
         </form>
